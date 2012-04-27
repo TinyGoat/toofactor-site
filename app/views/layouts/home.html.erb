@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TooFactor | Simple two factor authentication for developers with deadlines</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <nav id="primary">
+      <div class="content">
+        <div class="branding">
+          <h2 class="logo">toofactor</h2>
+        </div>
+        <ul>
+          <li class="here">Home</li>
+          <li>Usage &amp; Pricing</li>
+          <li>Sign Up</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="grid">
+      <%= yield %>
+    </div>
+
+    <footer>
+      Copyright &copy; <%=Time.now.year %> toofactor.com
+    </footer>
+  </body>
+</html>
