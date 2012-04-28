@@ -43,20 +43,30 @@ nav {
   &#primary {
     width: 100%;
 
+    .content {
+      border-bottom: 1px solid #d7d7d7;
+    }
+
     .branding {
       float: left;
       width: 48%;
     }
   }
   ul {
-    width: 39%;
+    width: 420px;
     float: right;
     padding-top: 10px;
+
     li {
       float: left;
       margin: 0 10px;
       color: #444;
       padding: 4px 8px;
+
+      a {
+        text-decoration: none;
+        color: $medblue;
+      }
 
       &.here {
         background: #fff;
@@ -65,6 +75,27 @@ nav {
         padding: 4px 8px;
       }
     }
+  }
+}
+header.generic {
+  padding: 30px 20px 30px 20px;
+  width: 900px;
+  margin: auto;
+
+  h1 {
+    font-family: 'CabinMedium', 'Helvetica', Arial, sans-serif;
+    color: #555;
+    text-align: center;
+    font-size: 310%;
+    text-shadow: 0 1px 0 #fff;
+  }
+  h3 {
+    font-family: 'CabinMedium', 'Helvetica', Arial, sans-serif;
+    color: $medblue;
+    text-align: center;
+    font-size: 180%;
+    line-height: 40px;
+    text-shadow: 0 1px 0 #fff;
   }
 }
 

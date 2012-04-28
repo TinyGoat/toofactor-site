@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Toofactor</title>
+  <title>Toofactor | Plans &amp; Pricing</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
   <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 </head>
-<body>
+  <body>
 
-<%= yield %>
+  <%= render 'shared/navigation' %>
 
-</body>
+    <div id="grid">
+      <%= yield %>
+    </div>
+
+    <footer>
+      Copyright &copy; <%=Time.now.year %> toofactor.com
+    </footer>
+  </body>
 </html>

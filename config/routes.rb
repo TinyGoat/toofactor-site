@@ -1,7 +1,7 @@
 Toofactor::Application.routes.draw do
   devise_for :users
 
-  get "home/index"
+  get "plans", to: "plans#index"
 
   root :to => 'home#index'
 end

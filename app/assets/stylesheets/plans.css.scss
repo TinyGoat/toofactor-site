@@ -1,0 +1,66 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "fonts";
+
+.plans {
+  background: #ffffcc;
+  width: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  font-family: 'CabinMedium', 'Helvetica', Arial, sans-serif;
+  font-size: 120%;
+  color: #444;
+  padding: 20px;
+  @include box-shadow(
+    0 4px 10px #999
+  );
+
+  h3 {
+    font-size: 180%;
+    text-align: center;
+    color: #0072ac;
+    margin-bottom: 10px;
+
+    .red {
+      color: red;
+    }
+  }
+  h4 {
+    text-align: center;
+  }
+
+  table {
+    margin-bottom: 20px;
+    tr {
+
+      td {
+        padding: 20px;
+        vertical-align: top;
+        border-bottom: 1px solid #e9b939;
+
+        dl {
+          dt {
+            font-family: 'CabinRegular', 'Helvetica', Arial, sans-serif;
+            font-size: 130%;
+          }
+          dd {
+            color: #555;
+          }
+        }
+
+        &.price {
+          font-size: 180%;
+          text-align: center;
+          vertical-align: middle;
+          border-left: 1px solid #e9b939;
+        }
+      }
+
+      &:first-child {
+        td {
+          border-top: 1px solid #e9b939;
+        }
+      }
+    }
+  }
+}

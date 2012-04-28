@@ -5,6 +5,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'devise'
 gem 'cancan'
+gem 'stripe'
 
 group :development do
   gem 'unicorn'
