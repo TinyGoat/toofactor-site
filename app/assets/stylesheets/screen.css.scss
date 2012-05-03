@@ -12,7 +12,7 @@ $dimblue: #e3f5fc;
 
 body {
   background: #ebebeb url('/assets/noise.png');
-  font-family: 'Helvetica', Arial, sans-serif;
+  font-family: 'CabinRegular', 'Helvetica', Arial, sans-serif;
   font-size: small;
 }
 
@@ -45,6 +45,7 @@ nav {
 
     .content {
       border-bottom: 1px solid #d7d7d7;
+      margin-bottom: 20px;
     }
 
     .branding {
@@ -62,10 +63,13 @@ nav {
       margin: 0 10px;
       color: #444;
       padding: 4px 8px;
+      font-size: 110%;
 
       a {
         text-decoration: none;
-        color: $medblue;
+        color: #0072ac;
+        font-weight: bold;
+        text-align: center;
       }
 
       &.here {
@@ -193,6 +197,21 @@ section {
         @include border-radius(8px);
         border: 1px solid #d7d7d7;
         height: 200px;
+
+        &.has-code {
+          background: #fff;
+          border: 1px solid #999;
+          @include box-shadow(
+            0 0 15px #888 inset,
+            0 1px 0 #fff
+          );
+        }
+
+        pre {
+          margin: 10px 0 0 -10px;
+          line-height: 20px;
+          color: #666;
+        }
       }
     }
 
@@ -218,11 +237,12 @@ section {
 
 footer {
   width: 940px;
-  padding: 5px 20px 40px;
+  padding: 20px 20px 40px;
   text-align: center;
-  margin: auto;
+  margin: 20px auto;
   color: #666;
   text-shadow: 0 1px 0 #fff;
+  border-top: 1px solid #d7d7d7;
 }
 
 /* Type
@@ -262,6 +282,16 @@ p {
     text-align: center;
     text-shadow: 0 1px 0 darken(#0072ac, 10%);
     color: #fff;
+  }
+
+  &.small {
+    @include border-radius(10px);
+    font-family: 'CabinBold', 'Helvetica', Arial, sans-serif;
+    font-size: 120%;
+    text-align: center;
+    text-shadow: 0 1px 0 darken(#0072ac, 10%);
+    color: #fff;
+    float: right;
   }
 
   &.blue {

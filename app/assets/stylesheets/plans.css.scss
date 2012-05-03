@@ -12,7 +12,8 @@
   color: #444;
   padding: 20px;
   @include box-shadow(
-    0 4px 10px #999
+    0 4px 10px #999,
+    0 0 100px darken(#ffffcc, 20%) inset
   );
 
   h3 {
