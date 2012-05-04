@@ -9,6 +9,23 @@
   <%=image_tag "/assets/devices.png" %>
 </div>
 
+<div id="see-how">
+</div>
+
+<div id="examples">
+  <pre>
+  <span class="prompt">$</span> curl https://api.stripe.com/v1/charges \
+   -u Kugj8pc9xg7kZrqPnn46qqaqSlwt2Nv7: \
+   -d amount=400 \
+   -d currency=usd \
+   -d "description=Charge for nick@littlerobothead.com" \
+   -d "card[number]=4242424242424242" \
+   -d "card[exp_month]=12" \
+   -d "card[exp_year]=2012" \
+   -d "card[cvc]=123"
+  </pre>
+</div>
+
 <section class="page">
 
   <div class="callout-block">
