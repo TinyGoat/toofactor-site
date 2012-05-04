@@ -21,6 +21,13 @@
     @include border-radius(3px);
     margin: 10px 0;
     width: 97%;
+
+    &.card-expiry-month {
+      width: 40px;
+    }
+    &.card-expiry-year {
+      width: 240px;
+    }
   }
 }
 .form-header {
