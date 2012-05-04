@@ -28,11 +28,16 @@ class User < ActiveRecord::Base
 
   before_validation :generate_api_key, on: :create
   before_validation :set_next_billing_date, on: :create
+  after_create :notify_redis_of_new_api_key
 
 
   private
   def generate_api_key
     self.api_key = (Digest::RMD160.new << self.email + API_KEY_SALT).to_s
+  end
+  
+  def notify_redis_of_new_api_key
+    $CUSTOMER_REDIS.set(self.api_key, '0')
   end
 
   def set_next_billing_date
