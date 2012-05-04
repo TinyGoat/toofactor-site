@@ -35,4 +35,7 @@ Toofactor::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  API_KEY_SALT = '7fc0c23356b36bfadd4706a151b3e56d3fcac1b0e2a7cd0b0c0c1f7c83baf4ff0c69bccc38f26df4733150be9f03adb82a8e5c5be4f1c15763d5de6b840ca1fa'
+
 end
