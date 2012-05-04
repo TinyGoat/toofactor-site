@@ -107,27 +107,23 @@ header.generic {
   width: 900px;
   padding: 30px 20px 30px 20px;
   margin: auto;
-  background: $medblue url('/assets/hero.png') top center no-repeat;
-  @include border-radius(6px);
-  @include box-shadow(
-    0 1px 6px darken($medblue, 30%) inset,
-    0 0 1px #fff
-  );
+
   .bug {
-    width: 50%;
-    margin-bottom: 40px;
+    margin: 0 auto 0 auto;
+    width: 700px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
 
     h1 {
       font-family: 'CabinMedium', 'Helvetica', Arial, sans-serif;
-      color: #fff;
-      text-shadow: 0 1px 0 darken($medblue, 20%);
+      font-size: 280%;
+      color: #444;
     }
     h5 {
       margin-top: 20px;
       font-size: 160%;
-      font-family: 'CabinBold', 'Helvetica', Arial, sans-serif;
-      color: #fff;
-      text-shadow: 0 1px 0 darken($medblue, 20%);
+      font-family: 'CabinMedium', 'Helvetica', Arial, sans-serif;
+      color: #555;
     }
   }
 }
@@ -143,94 +139,37 @@ section {
   );
   overflow: hidden;
 
-  .feature {
-    width: 290px;
-    float: left;
-    margin-right: 15px;
-    color: #555;
-    line-height: 18px;
-    &:last-child {
-      margin: 0;
-    }
-    h2 {
-      font-size: 90%;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      color: $medblue;
-    }
-    img {
-      @include border-radius(4px);
-      margin-bottom: 10px;
-    }
-  }
-  &.deck {
-    width: 100%;
-    @include box-shadow(none);
-    @include border-radius(0);
+  hr {
+    clear: both;
+    color: #fff;
+    background: url('/assets/faded-rule.png') center center no-repeat;
+    height: 1px;
+    width: 900px;
+    margin: auto;
     border: 0;
-    padding: 40px;
-    margin: 0;
+  }
 
-    &#simple,
-    &#platform {
-      background: $dimblue;
-    }
-
-    .column {
-      float: left;
-      width: 44%;
-      padding-top: 0;
-
-      a.cta {
-        text-align: right;
-        color: $medblue;
-        font-weight: 900;
-        text-decoration: none;
-        line-height: 25px;
-      }
-
-      &:nth-child(even) {
-        float: left;
-        margin-left: 35px;
-      }
-      .art {
-        @include border-radius(8px);
-        border: 1px solid #d7d7d7;
-        height: 200px;
-
-        &.has-code {
-          background: #fff;
-          border: 1px solid #999;
-          @include box-shadow(
-            0 0 15px #888 inset,
-            0 1px 0 #fff
-          );
-        }
-
-        pre {
-          margin: 10px 0 0 -10px;
-          line-height: 20px;
-          color: #666;
-        }
-      }
-    }
-
-    h2 {
-      font-family: 'CabinBold', 'Helvetica', Arial, sans-serif;
-      color: #555;
-      font-size: 160%;
-      line-height: 45px;
-    }
-    &:last-child {
-      border: 0;
-      padding-bottom: 40px;
-    }
+  .callout-block {
+    width: 45%;
+    padding: 20px;
+    float: left;
 
     h3 {
-      text-align: center;
-      margin-bottom: 20px;
       text-transform: uppercase;
-      color: #777;
+      color: orange;
+      font-size: 140%;
+      margin-bottom: 10px;
+    }
+
+    .icon {
+      font-family: 'ModernPictogramsNormal';
+      font-size: 120px;
+      color: #444;
+      float: left;
+      text-align: center;
+      margin-right: 20px;
+      width: 90px;
+      text-shadow: 0 0 25px #d7d7d7, 0 2px 0 #fff;
     }
   }
 }
@@ -260,6 +199,11 @@ h2 {
     font-weight: 900;
     letter-spacing: -0.05em;
     text-shadow: 0 1px 0 #fff;
+
+    a {
+      color: #444;
+      text-decoration: none;
+    }
   }
 }
 
@@ -273,7 +217,7 @@ p {
 -----------------------------------*/
 
 .btn {
-  @include border-radius(40px);
+  @include border-radius(10px);
   padding: 8px 20px;
 
   &.large {
