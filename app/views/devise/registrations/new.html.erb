@@ -1,22 +1,70 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'https://js.stripe.com/v1/', 'registration.js' %>
+  <%= tag :meta, :name => 'stripe-key', :content => STRIPE_PUBLIC_KEY %>
+<% end %>
+
 <div class="form-header">
   <h2>Sign In</h2>
 </div>
 
 <div class="form center">
 
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+  <%= form_for(resource,
+               as: resource_name,
+               url: registration_path(resource_name),
+               id: 'user-registration-form') do |f| %>
 
-    <div><%= f.label :email %><br />
-    <%= f.email_field :email %></div>
+    <div class="form-errors">
+      <%= devise_error_messages! %>
+      <div id="stripe-errors"></div>
+    </div>
 
-    <div><%= f.label :password %><br />
-    <%= f.password_field :password %></div>
+    <%= f.hidden_field :stripe_token %>
 
-    <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
+    <p>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </p>
 
-    <div><%= f.submit "Sign Up", :class => "btn small blue" %></div>
+    <p>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </p>
+
+    <p>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </p>
+
+    <fieldset>
+      <legend>Payment info</legend>
+
+      <p class="hint">
+        Chill out dude. You're still getting all this sweet value for free for 15 whole days. We just don't want that awesome site you're building with mongoose 0.0.2rc and jquery.twitter-nosebleed-pony-dance.min.pack to stop working all of a sudden and your <em>client</em> to freak out. So we need your billing info to ensure continued service after your trial ends. Keep on rocking hipster dude. fredymercuryfist.jpg
+     </p>
+
+      <p>
+        <label>Card Number</label>
+        <input type="text" size="20" autocomplete="off" class="card-number" required>
+      </p>
+
+      <p>
+        <label>CVC</label>
+        <input type="text" size="4" autocomplete="off" class="card-cvc" required>
+      </p>
+
+      <p>
+        <label>Expiration (MM/YYYY)</label>
+        <input type="text" size="2" class="card-expiry-month" required> / <input type="text" size="4" class="card-expiry-year" required>
+      </p>
+
+    </fieldset>
+
+    <div class="actions">
+      <%= f.submit "Sign Up", :class => "btn small blue" %>
+    </div>
+
   <% end %>
 
 </div>
+
