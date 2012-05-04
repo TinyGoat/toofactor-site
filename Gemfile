@@ -6,6 +6,9 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'cancan'
 gem 'stripe'
+gem 'redis'
+gem 'redis-namespace'
+gem 'json'
 
 group :development do
   gem 'unicorn'
