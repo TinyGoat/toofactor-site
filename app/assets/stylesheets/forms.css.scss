@@ -29,6 +29,16 @@
       width: 240px;
     }
   }
+  select,
+  textarea {
+    display: block;
+    margin: 10px 0;
+  }
+  textarea {
+    width: 98%;
+    border: 1px solid #d7d7d7;
+    @include border-radius(4px);
+  }
 }
 .form-header {
   width: 600px;
