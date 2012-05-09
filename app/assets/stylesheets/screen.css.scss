@@ -44,7 +44,7 @@ nav {
     width: 100%;
 
     .content {
-      border-bottom: 1px solid #d7d7d7;
+      border-bottom: 1px dotted #888;
       margin-bottom: 20px;
     }
 
@@ -185,7 +185,6 @@ section {
     float: left;
 
     h3 {
-      text-transform: uppercase;
       color: orange;
       font-size: 140%;
       margin-bottom: 10px;
@@ -193,13 +192,22 @@ section {
 
     .icon {
       font-family: 'ModernPictogramsNormal';
-      font-size: 120px;
+      font-size: 70px;
+      width: 90px;
+      height: 90px;
+      line-height: 90px;
       color: #444;
       float: left;
       text-align: center;
       margin-right: 20px;
       width: 90px;
-      text-shadow: 0 0 25px #d7d7d7, 0 2px 0 #fff;
+      text-shadow: 0 0 25px #fff, 0 1px 0 #fff;
+      background: #c3c7e7;
+      @include border-radius(100px);
+      @include box-shadow(
+        0 1px 0 #777 inset,
+        0 1px 0 #fff
+      );
     }
   }
 }
@@ -211,7 +219,7 @@ footer {
   margin: 20px auto;
   color: #666;
   text-shadow: 0 1px 0 #fff;
-  border-top: 1px solid #d7d7d7;
+  border-top: 1px dotted #888;
 }
 
 /* Type
