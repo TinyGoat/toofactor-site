@@ -10,6 +10,7 @@ gem 'stripe'
 gem 'redis'
 gem 'redis-namespace'
 gem 'json'
+gem 'exceptional'
 
 group :development do
   gem 'unicorn'
@@ -25,4 +26,3 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-
