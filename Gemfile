@@ -11,7 +11,6 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'json'
 gem 'exceptional'
-gem 'chimpactions'
 
 group :development do
   gem 'unicorn'
