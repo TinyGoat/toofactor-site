@@ -251,8 +251,10 @@ p {
   line-height: 20px;
 
   &.hint {
-    font-size: 90%;
+    font-size: 70%;
     font-style: italic;
+    clear: both;
+    text-align: center;
   }
 }
 
@@ -260,24 +262,25 @@ p {
 -----------------------------------*/
 
 .btn {
-  @include border-radius(10px);
+  @include border-radius(4px);
   padding: 8px 20px;
+  cursor: pointer;
 
   &.large {
     font-family: 'CabinBold', 'Helvetica', Arial, sans-serif;
     font-size: 140%;
     text-align: center;
     text-shadow: 0 1px 0 darken(#0072ac, 10%);
-    color: #fff;
+    color: #efefef;
   }
 
   &.small {
-    @include border-radius(10px);
+    @include border-radius(4px);
     font-family: 'CabinBold', 'Helvetica', Arial, sans-serif;
     font-size: 120%;
     text-align: center;
     text-shadow: 0 1px 0 darken(#0072ac, 10%);
-    color: #fff;
+    color: #efefef;
     float: right;
   }
 
@@ -285,9 +288,13 @@ p {
     background: #0072ac;
     border: 1px solid darken(#0072ac, 10%);
     @include box-shadow(
-      0 1px 0 lighten(#0072ac, 10%) inset,
-      0 1px 3px #222
+      0 1px 0 lighten(#0072ac, 20%) inset,
+      0 0 15px lighten(#0072ac, 10%) inset,
+      0 3px 10px #222
       );
+    &:active {
+      @include box-shadow(0 1px 10px darken(#0072ac, 20%) inset);
+    }
   }
 }
 a.btn {

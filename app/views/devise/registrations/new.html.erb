@@ -4,7 +4,7 @@
 <% end %>
 
 <div class="form-header">
-  <h2>Sign In</h2>
+  <h2>Sign Up</h2>
 </div>
 
 <div class="form center">
@@ -36,30 +36,27 @@
       <%= f.password_field :password_confirmation %>
     </p>
 
-    <fieldset>
-      <legend>Payment info</legend>
+    <fieldset class="credit-card">
+      <h3>Payment Info</h3>
 
-      <p class="hint">
-        You won't be billed until your trial period is over. Kick the tires, write your first app. You know.
-      </p>
+      <div class="magnetic-stripe"></div>
 
-      </br>
+        <p>
+          <label>Card Number</label>
+          <input type="text" size="20" autocomplete="off" class="card-number" placeholder="4242 4242 4242 4242" required>
+        </p>
 
-      <p>
-        <label>Card Number</label>
-        <input type="text" size="20" autocomplete="off" class="card-number" required>
-      </p>
+        <p class="cvc">
+          <label>CVC</label>
+          <input type="text" size="4" autocomplete="off" class="card-cvc" required>
+        </p>
 
-      <p>
-        <label>CVC</label>
-        <input type="text" size="4" autocomplete="off" class="card-cvc" required>
-      </p>
+        <p class="date">
+          <label>Expiry Date</label>
+          <input type="text" size="2" class="card-expiry-month" placeholder="MM" required> / <input type="text" size="4" class="card-expiry-year" placeholder="YYYY" required>
+        </p>
 
-      <p>
-        <label>Expiration (MM/YYYY)</label>
-        
-        <input type="text" size="2" class="card-expiry-month" required> / <input type="text" size="4" class="card-expiry-year" required>
-      </p>
+        <p class="hint">Don't worry. We won't bill you until your 15 day trial is up. After that, cancel anytime.</p>
 
     </fieldset>
 
