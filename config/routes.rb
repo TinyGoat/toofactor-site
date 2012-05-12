@@ -1,12 +1,12 @@
 Toofactor::Application.routes.draw do
 
-  get '/contact' => 'contact#index', as: :contact_us
-  post '/contact' => 'contact#contact', as: :make_contact
-
   devise_for :users
 
-  get "plans", to: "plans#index"
-  get "contact", to: "contact#index"
+  get '/contact' => 'contact#index', as: :contact_us
+  get '/terms' => 'home#terms_of_service', as: :terms
+  get "plans", to: "plans#index", as: :plans
+  get "contact", to: "contact#index", as: :contact
 
+  post '/contact' => 'contact#contact', as: :make_contact
   root :to => 'home#index'
 end

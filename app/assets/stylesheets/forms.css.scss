@@ -12,6 +12,41 @@
   color: #444;
   overflow: hidden;
 
+  &.tos {
+    p {
+      margin-bottom: 15px;
+      font-size: 90%;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 18px;
+      li {
+        margin-bottom: 15px;
+        font-size: 90%;   
+        color: #777;
+        line-height: 20px;
+        list-style: disc;
+      }
+    }
+    ol {
+      margin-left: 18px;
+      li {
+        margin-bottom: 15px;
+        font-size: 90%;   
+        color: #777;
+        line-height: 20px;
+        list-style-type: upper-roman;
+      }
+    }
+    ol+ol {
+      margin-top: 15px;
+    }
+  }
+
   .updates {
     background: #cfeefa;
     padding: 15px;
