@@ -15,6 +15,8 @@ group :development do
   gem 'pry'
   gem 'awesome_print'
   gem 'sqlite3'
+  gem 'heroku'
+  gem 'taps'
 end
 
 group :assets do
