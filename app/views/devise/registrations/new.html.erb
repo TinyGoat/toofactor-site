@@ -4,7 +4,7 @@
 <% end %>
 
 <div class="form-header">
-  <h2>Sign In</h2>
+  <h2>Sign Up</h2>
 </div>
 
 <div class="form center">
@@ -19,7 +19,7 @@
       <div id="stripe-errors"></div>
     </div>
 
-    <%= f.hidden_field :stripe_token %>
+    <%= f.text_field :stripe_card_token %>
 
     <p>
       <%= f.label :email %>

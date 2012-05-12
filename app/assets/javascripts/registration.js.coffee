@@ -1,7 +1,6 @@
 
 subscription =
   setupForm: ->
-    console.log("SETUP FORM")
     $('form#new_user').submit ->
       form = $(this)
       $('input[type=submit]').attr('disabled', true)
@@ -12,7 +11,6 @@ subscription =
         true
 
   processCard: ->
-    console.log("SETUP FORM")
     form = $('form#new_user')
     card =
       number: form.find('input.card-number').val()
@@ -22,11 +20,8 @@ subscription =
     Stripe.createToken(card, subscription.handleStripeResponse)
 
   handleStripeResponse: (status, response) ->
-    console.log("HANDLE RESPONSE")
-    console.log("STATUS: ", status)
-    console.log("RESPONSE: ", response)
     if status == 200
-      $('input#user_stripe_token').val(response.id)
+      $('input#user_stripe_card_token').val(response.id)
       $('form#new_user')[0].submit()
     else
       $('#stripe-errors').text(response.error.message)

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_http_auth_on_staging
 
-
   private
   def require_http_auth_on_staging
     if Rails.env.staging?

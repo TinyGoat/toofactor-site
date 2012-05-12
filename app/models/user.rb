@@ -9,9 +9,10 @@ class User < ActiveRecord::Base
                   :password,
                   :password_confirmation,
                   :remember_me,
-                  :stripe_token,
                   :api_key,
-                  :next_billing_date
+                  :next_billing_date,
+                  :stripe_card_token
+  attr_accessor :stripe_card_token
 
 
   ##
@@ -29,6 +30,7 @@ class User < ActiveRecord::Base
   before_validation :generate_api_key, on: :create
   before_validation :set_next_billing_date, on: :create
   after_create :notify_redis_of_new_api_key
+  before_validation :generate_stripe_customer_token
 
 
   private
@@ -42,6 +44,19 @@ class User < ActiveRecord::Base
 
   def set_next_billing_date
     self.next_billing_date = 15.days.from_now
+  end
+  
+  def generate_stripe_customer_token
+    unless self.stripe_card_token.blank?
+      customer = Stripe::Customer.create(description: email, card: stripe_card_token)
+      self.stripe_customer_token = customer.id
+      self.stripe_card_token = nil
+      save!
+    end
+  rescue Stripe::InvalidRequestError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
   end
 
 end
