@@ -210,6 +210,42 @@ section {
     }
   }
 }
+//mail chimp form
+
+.mailform {
+  width: 500px;
+  margin: auto;
+
+  input[type='email'] {
+    width: 72%;
+    padding: 10px;
+    @include border-radius(4px 0 0 4px);
+    @include box-shadow(
+      0 1px 0 #fff,
+      0 1px 6px #d7d7d7 inset
+    );
+    border: 1px solid #888;
+    text-align: center;
+  }
+  .tny {
+    background: #ed3a1c;
+    border: 1px solid darken(#ed3a1c, 20%);
+    @include box-shadow(
+      0 1px 0 lighten(#ed3a1c, 20%) inset,
+      0 1px 0 #fff
+    );
+    @include border-radius(0 4px 4px 0);
+    color: #fff;
+    padding: 10px;
+    margin-left: -4px;
+    text-shadow: 0 -1px 0 darken(#ed3a1c, 40%);
+    cursor: pointer;
+
+    &:active {
+      @include box-shadow(0 0 8px darken(#ed3a1c, 40%) inset);
+    }
+  }
+}
 
 footer {
   width: 940px;
