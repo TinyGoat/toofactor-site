@@ -1,0 +1,25 @@
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+staging:
+  adapter: postgresql
+  database: toofactor
+  encoding: utf8
+  username: toofactor_user
+  password: <PASSWORD>
+
+production:
+  adapter: postgresql
+  database: toofactor
+  encoding: utf8
+  username: toofactor_user
+  password: <PASSWORD>

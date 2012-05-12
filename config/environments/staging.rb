@@ -66,5 +66,5 @@ Toofactor::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   $REDIS = Redis.new(:host => "127.0.0.1", :port => 6379)
-  config.action_mailer.default_url_options = { :host => 'toofactor.com' }
+  config.action_mailer.default_url_options = { :host => 'toofactor-staging.herokuapp.com' }
 end
