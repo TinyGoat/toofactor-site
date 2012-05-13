@@ -11,8 +11,19 @@ class User < ActiveRecord::Base
                   :remember_me,
                   :api_key,
                   :next_billing_date,
-                  :stripe_card_token
-  attr_accessor :stripe_card_token
+                  :stripe_card_token,
+                  :plan_id
+
+  attr_accessor :stripe_card_token,
+                :plan_id
+
+
+  ##
+  ## Relationships
+  ##
+
+  has_one :subscription
+  has_one :plan, through: :subscription
 
 
   ##
@@ -23,17 +34,37 @@ class User < ActiveRecord::Base
   validates :next_billing_date, presence: true
   validates :api_key, presence: true, uniqueness: true
 
+
   ##
   ## Callbacks
   ##
 
+  before_validation :validate_plan_id
   before_validation :generate_api_key, on: :create
   before_validation :set_next_billing_date, on: :create
   after_create :notify_redis_of_new_api_key
   before_validation :generate_stripe_customer_token
+  after_save :create_subscription_from_plan_id
 
 
   private
+  
+  def create_subscription_from_plan_id
+    self.subscription = Subscription.create(plan_id: self.plan_id)
+  end
+  
+  def validate_plan_id
+    if plan_id.blank?
+      errors.add :plan_id, "You must select a plan to register."
+      false
+    elsif !Plan.exists?(plan_id)
+      errors.add :plan_id, "Please select a valid plan to register."
+      false
+    else
+      true
+    end
+  end
+  
   def generate_api_key
     self.api_key = (Digest::RMD160.new << self.email + API_KEY_SALT).to_s
   end

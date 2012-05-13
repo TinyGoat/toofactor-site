@@ -6,6 +6,13 @@ class Plan < ActiveRecord::Base
                   :overage_email_cost,
                   :sms_cost
 
+  ##
+  ## Relationships
+  ##
+
+  has_many :subscriptions
+  has_many :users, through: :subscriptions
+
 
   ##
   ## Validations
@@ -16,5 +23,14 @@ class Plan < ActiveRecord::Base
   validates :number_of_bundled_emails, presence: true
   validates :overage_email_cost, presence: true
   validates :sms_cost, presence: true
+
+
+  ##
+  ## Instance Methods
+  ##
+  
+  def name_with_monthly_cost
+    "#{self.name} ($#{self.monthly_cost.to_i} / mo)"
+  end
 
 end

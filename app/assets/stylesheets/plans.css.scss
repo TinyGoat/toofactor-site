@@ -4,7 +4,7 @@
 
 .plans {
   background: #ffffcc;
-  width: 500px;
+  width: 610px;
   margin: 20px auto;
   overflow: hidden;
   font-family: 'CabinMedium', 'Helvetica', Arial, sans-serif;
@@ -54,6 +54,21 @@
           text-align: center;
           vertical-align: middle;
           border-left: 1px solid #e9b939;
+        }
+        
+        &.action {
+          width: 130px;
+          padding: 10px 10px 10px 20px;
+          border-left: 1px solid #e9b939;
+          
+          a.btn {
+            padding: 3px 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            color: white;
+            position: relative;
+            top: 26px;
+          }
         }
       }
 

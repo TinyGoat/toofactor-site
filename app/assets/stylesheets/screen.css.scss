@@ -1,11 +1,8 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "fonts";
+@import "colors";
 
-
-$medblue: #617b91;
-$red: #bc0d05;
-$dimblue: #e3f5fc;
 
 /* Base Setup
 -----------------------------------*/
@@ -185,7 +182,7 @@ section {
     float: left;
 
     h3 {
-      color: orange;
+      color: $orange;
       font-size: 140%;
       margin-bottom: 10px;
     }

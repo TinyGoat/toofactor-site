@@ -11,7 +11,7 @@
 
   <%= form_for(resource,
                as: resource_name,
-               url: registration_path(resource_name),
+               url: registration_path,
                id: 'user-registration-form') do |f| %>
 
     <div class="form-errors">
@@ -19,7 +19,12 @@
       <div id="stripe-errors"></div>
     </div>
 
-    <%= f.text_field :stripe_card_token %>
+    <%= f.hidden_field :stripe_card_token %>
+
+    <p>
+      <%= f.label :plan_id %>
+      <%= f.select :plan_id, options_from_collection_for_select(@plans, :id, :name_with_monthly_cost, params[:plan_id]) %>
+    </p>
 
     <p>
       <%= f.label :email %>

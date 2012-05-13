@@ -10,12 +10,18 @@
         <tr>
           <td width="75%">
             <dl>
-              <dt><%= pluralize(plan.number_of_bundled_emails, 'Email Authentication') %> / mo.</dt>
-              <dd>Other cool things</dd>
+              <dt><%= number_with_delimiter(plan.number_of_bundled_emails) %> Email Authentications / mo</dt>
+              <dd>
+                <%= number_to_currency(plan.overage_email_cost, precision: 3) %> / email over bundle<br>
+                <%= number_to_currency(plan.sms_cost, precision: 3) %> / sms
+              </dd>
             </dl>
           </td>
           <td class="price">
-            <%= number_to_currency(plan.monthly_cost) %> / mo.
+            <%= number_to_currency(plan.monthly_cost, precision: 0) %>/mo
+          </td>
+          <td class="action">
+            <%= link_to 'Get Started', new_user_registration_path(plan_id: plan.id), class: 'btn blue' %>
           </td>
         </tr>
       <% end %>
