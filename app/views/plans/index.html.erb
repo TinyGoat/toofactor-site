@@ -6,39 +6,19 @@
 <div class="plans">
   <table>
     <tbody>
-      <tr>
-        <td width="75%">
-          <dl>
-            <dt>20,000 Authentications</dt>
-            <dd>Other cool things</dd>
-          </dl>
-        </td>
-        <td class="price">
-          $12/mo
-        </td>
-      </tr>
-      <tr>
-        <td width="75%">
-          <dl>
-            <dt>50,000 Authentications</dt>
-            <dd>Other cool things</dd>
-          </dl>
-        </td>
-        <td class="price">
-          $25/mo
-        </td>
-      </tr>
-      <tr>
-        <td width="75%">
-          <dl>
-            <dt>150,000 Authentications</dt>
-            <dd>Other cool things</dd>
-          </dl>
-        </td>
-        <td class="price">
-          $75/mo
-        </td>
-      </tr>
+      <% for plan in @plans do %>
+        <tr>
+          <td width="75%">
+            <dl>
+              <dt><%= pluralize(plan.number_of_bundled_emails, 'Email Authentication') %> / mo.</dt>
+              <dd>Other cool things</dd>
+            </dl>
+          </td>
+          <td class="price">
+            <%= number_to_currency(plan.monthly_cost) %> / mo.
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <h3>Try it for 15 days <span class="red">free.</span> Start now.</h3>
