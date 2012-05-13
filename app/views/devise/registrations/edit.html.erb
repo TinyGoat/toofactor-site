@@ -1,25 +1,79 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
+<% content_for :head do %>
+  <%= javascript_include_tag 'https://js.stripe.com/v1/', 'registration.js' %>
+  <%= tag :meta, :name => 'stripe-key', :content => STRIPE_PUBLIC_KEY %>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div class="form-header">
+  <h2>Edit Your Account</h2>
+</div>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+<%= render partial: 'shared/account_navigation' %>
+<div class="form center">
 
-<%= link_to "Back", :back %>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
+    <div class="form-errors">
+      <%= devise_error_messages! %>
+      <div id="stripe-errors"></div>
+    </div>
+    
+    <%= f.hidden_field :stripe_card_token %>
+
+    <p class="required">
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </p>
+
+    <fieldset class="change-password">
+      <p class="hint">
+        If you want to change your password please provide a new one below, otherwise leave these fields blank.
+      </p>
+      <p>
+        <%= f.label :password %>
+        <%= f.password_field :password, :autocomplete => "off" %>
+      </p>
+
+      <p>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </p>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Payment info</legend>
+      <p>
+        <label>Card Number</label>
+        <input type="text" size="20" autocomplete="off" class="card-number" required>
+      </p>
+
+      <p>
+        <label>CVC</label>
+        <input type="text" size="4" autocomplete="off" class="card-cvc" required>
+      </p>
+
+      <p>
+        <label>Expiration (MM/YYYY)</label>
+        
+        <input type="text" size="2" class="card-expiry-month" required> / <input type="text" size="4" class="card-expiry-year" required>
+      </p>
+
+    </fieldset>
+
+    <p class="current-password required">
+      <%= f.label :current_password %>
+      <span class="hint">We need your current password to confirm your changes.</span>
+      <%= f.password_field :current_password %>
+    </p>
+
+    <div class="actions">
+      <%= f.submit "Update Account", :class => "btn small blue" %>
+    </div>
+  <% end %>
+
+  <!-- <h3>Cancel my account</h3>
+
+  <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+
+  <%= link_to "Back", :back %> -->
+
+</div>
