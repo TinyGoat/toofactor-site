@@ -11,6 +11,7 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'json'
 gem 'exceptional'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'unicorn'
