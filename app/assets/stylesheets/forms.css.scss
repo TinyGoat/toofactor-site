@@ -1,6 +1,7 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "fonts";
+@import "colors";
 
 .form {
   width: 500px;
@@ -12,90 +13,6 @@
   color: #444;
   overflow: hidden;
 
-  &.tos {
-    p {
-      margin-bottom: 15px;
-      font-size: 90%;
-    }
-
-    h3 {
-      margin-bottom: 10px;
-    }
-
-    ul {
-      margin-left: 18px;
-      li {
-        margin-bottom: 15px;
-        font-size: 90%;   
-        color: #777;
-        line-height: 20px;
-        list-style: disc;
-      }
-    }
-    ol {
-      margin-left: 18px;
-      li {
-        margin-bottom: 15px;
-        font-size: 90%;   
-        color: #777;
-        line-height: 20px;
-        list-style-type: upper-roman;
-      }
-    }
-    ol+ol {
-      margin-top: 15px;
-    }
-  }
-
-  .updates {
-    background: #cfeefa;
-    padding: 15px;
-    margin-bottom: 10px;
-    @include border-radius(8px);
-  }
-
-  .credit-card {
-    background: #efefef;
-    padding: 15px;
-    border: 1px solid #ccc;
-    @include border-radius(8px); 
-    @include box-shadow(0 1px 0 #fff inset);
-    position: relative;
-    margin: 20px 0;
-
-    h3 {
-      padding-bottom: 5px;
-      font-size: 140%;
-    }
-
-    label {
-      font-size: 80%;
-      color: #444;
-      text-transform: uppercase;
-    }
-
-    .magnetic-stripe {
-      background: #111;
-      height: 45px;
-      width: 500px;
-      margin: 10px -15px 10px -15px;
-    }
-
-    .card-expiry-month,
-    .card-expiry-year,
-    .card-cvc {
-      width: 50px;
-    }
-
-    .date {
-      float: left;
-    }
-
-    .cvc {
-      float: right;
-    }
-  }
-
   input[type="text"],
   input[type="password"],
   input[type="email"] {
@@ -103,9 +20,15 @@
     padding: 10px 5px;
     border: 1px solid #d7d7d7;
     @include border-radius(3px);
-    @include box-shadow(0 1px 0 #fff);
     margin: 10px 0;
     width: 97%;
+
+    &.card-expiry-month {
+      width: 40px;
+    }
+    &.card-expiry-year {
+      width: 240px;
+    }
   }
   select,
   textarea {
@@ -116,6 +39,24 @@
     width: 98%;
     border: 1px solid #d7d7d7;
     @include border-radius(4px);
+  }
+  p {
+    
+    &.required {
+      label {
+        &:after {
+          color: $orange;
+          content: '*';
+          padding-left: 5px;
+        }
+      }
+    }
+    
+    span.hint {
+      display: block;
+      font-size: 12px;
+      font-style: italic;
+    }
   }
 }
 .form-header {

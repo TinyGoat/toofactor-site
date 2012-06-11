@@ -6,39 +6,25 @@
 <div class="plans">
   <table>
     <tbody>
-      <tr>
-        <td width="75%">
-          <dl>
-            <dt>20,000 Authentications</dt>
-            <dd>Other cool things</dd>
-          </dl>
-        </td>
-        <td class="price">
-          $12/mo
-        </td>
-      </tr>
-      <tr>
-        <td width="75%">
-          <dl>
-            <dt>50,000 Authentications</dt>
-            <dd>Other cool things</dd>
-          </dl>
-        </td>
-        <td class="price">
-          $25/mo
-        </td>
-      </tr>
-      <tr>
-        <td width="75%">
-          <dl>
-            <dt>150,000 Authentications</dt>
-            <dd>Other cool things</dd>
-          </dl>
-        </td>
-        <td class="price">
-          $75/mo
-        </td>
-      </tr>
+      <% for plan in @plans do %>
+        <tr>
+          <td width="75%">
+            <dl>
+              <dt><%= number_with_delimiter(plan.number_of_bundled_emails) %> Email Authentications / mo</dt>
+              <dd>
+                <%= number_to_currency(plan.overage_email_cost, precision: 3) %> / email over bundle<br>
+                <%= number_to_currency(plan.sms_cost, precision: 3) %> / sms
+              </dd>
+            </dl>
+          </td>
+          <td class="price">
+            <%= number_to_currency(plan.monthly_cost, precision: 0) %>/mo
+          </td>
+          <td class="action">
+            <%= link_to 'Get Started', new_user_registration_path(plan_id: plan.id), class: 'btn blue' %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <h3>Try it for 15 days <span class="red">free.</span> Start now.</h3>

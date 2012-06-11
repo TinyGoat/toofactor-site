@@ -1,2 +1,2 @@
-Stripe.api_key = "Kugj8pc9xg7kZrqPnn46qqaqSlwt2Nv7"
+Stripe.api_key = ENV['STRIPE_API_KEY']
 STRIPE_PUBLIC_KEY = "pk_2GNutIApf5PKs9evHvVLaS4HseBbr"

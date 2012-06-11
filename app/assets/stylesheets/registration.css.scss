@@ -1,0 +1,82 @@
+@import "compass/css3";
+@import 'colors';
+
+.form {
+  p.current-password {
+    padding: 6px 10px;
+    @include border-radius(3px);
+    background-color: #ebebeb;
+    margin: 10px 0;
+  }
+  fieldset.change-password {
+    padding: 6px 10px;
+    @include border-radius(3px);
+    background-color: #ebebeb;
+    margin: 10px 0;
+    
+    p.hint {
+      padding: 5px 0;
+    }
+  }
+  
+  &.sign-up {
+    
+    .select-plan {
+      width: 462px;
+      margin: 25px auto 10px auto;
+      overflow: auto;
+
+      .plan {
+        width: 140px;
+        height: 150px;
+        float: left;
+        margin: 10px 2px;
+        padding: 10px 5px;
+        z-index: 10;
+        @include border-radius(5px);
+        background: #EEE;
+        color: #333;
+        cursor: pointer;
+        @include box-shadow(
+          0 0 100px darken(#CCC, 20%) inset
+        );
+        
+        dt {
+          font-size: 18px;
+        }
+        dd {
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+        
+        &.selected {
+          background: $dimblue;
+          height: 170px;
+          z-index: 100;
+          position: relative;
+          top: -10px;
+          padding-top: 20px;
+          color: darken($medblue, 10%);
+          @include box-shadow(
+            0 4px 10px $medblue,
+            0 0 100px darken($dimblue, 20%) inset
+          );
+          
+          .price {
+            margin-top: 20px;
+          }
+        }
+        
+        .price {
+          text-align: center;
+          font-size: 25px;
+          .per-month {
+            font-size: 14px;
+          }
+          
+        }
+      }
+    }
+  }
+  
+}

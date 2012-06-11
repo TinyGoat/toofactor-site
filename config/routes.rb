@@ -1,12 +1,19 @@
 Toofactor::Application.routes.draw do
 
-  devise_for :users
+  get '/contact', to: 'contact#index',
+                  as: :contact_us
+  post '/contact', to: 'contact#contact',
+                   as: :make_contact
+  
+  resources :plans, only: [:index]
 
-  get '/contact' => 'contact#index', as: :contact_us
-  get '/terms' => 'home#terms_of_service', as: :terms
-  get "plans", to: "plans#index", as: :plans
-  get "contact", to: "contact#index", as: :contact
+  devise_for :users, controllers: { registrations: 'registrations' } do
+    get '/sign_up', to: 'registrations#new', as: :sign_up
+    post '/sign_up', to: 'registrations#create', as: :registration
+    get '/account', to: 'registrations#edit', as: :edit_account
+    get '/account/subscription', to: 'subscriptions#edit', as: :edit_subscription
+    put '/account/subscription', to: 'subscriptions#update', as: :update_subscription
+  end
 
-  post '/contact' => 'contact#contact', as: :make_contact
   root :to => 'home#index'
 end

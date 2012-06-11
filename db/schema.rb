@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504020613) do
+ActiveRecord::Schema.define(:version => 20120513175350) do
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.float    "monthly_cost"
+    t.integer  "number_of_bundled_emails"
+    t.float    "overage_email_cost"
+    t.float    "sms_cost"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.datetime "subscribed_at"
+    t.datetime "canceled_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20120504020613) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "stripe_token"
+    t.string   "stripe_customer_token"
     t.string   "api_key"
     t.date     "next_billing_date"
   end

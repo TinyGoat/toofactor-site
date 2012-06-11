@@ -7,7 +7,7 @@
   <%= form_tag make_contact_path do %>
 
     <p>
-      <%= label_tag 'message[type]', "How can we help?" %>
+      <%= label_tag 'message[type]', "How can we help you?" %>
       <%= select_tag 'message[type]', options_for_select([['General Questions', 'general'], ['Billing', 'billing'], ['Support', 'support']]) %>
     </p>
 
@@ -25,15 +25,6 @@
       <%= label_tag 'message[body]', 'Body' %>
       <%= text_area_tag 'message[body]', '', rows: 8 %>
     </p>
-
-    <div class="updates">
-      <p> Would you like to receive occasional updates from TooFactor? (Seriously, three or four times a year.)</p>
-      <br/>
-      <p>
-        <%= check_box 'subscribe', '' %>
-        <%= label_tag 'subscribe', 'Sure, sign me up!' %>
-      </p>
-    </div>
 
     <div class="form-actions">
       <%= submit_tag 'Make Contact', class: "btn small blue" %>

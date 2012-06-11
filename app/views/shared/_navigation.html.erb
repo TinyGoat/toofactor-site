@@ -13,14 +13,15 @@
       <li>
         <% unless user_signed_in? %>
           <%= link_to "Log In", new_user_session_path %> /
-          <%= link_to "Sign Up", new_user_registration_path %>
+          <%= link_to "Sign Up", sign_up_path %>
         <% else %>
           <%= current_user.email %>
+          <%= link_to 'Account', edit_account_path %> /
           <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
         <% end %>
       </li>
       <li>
-        <%=link_to "Contact", contact_path %>
+        <%=link_to "Contact", contact_us_path %>
       </li>
     </ul>
   </div>

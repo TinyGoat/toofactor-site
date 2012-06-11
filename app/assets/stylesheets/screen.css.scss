@@ -1,11 +1,8 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "fonts";
+@import "colors";
 
-
-$medblue: #617b91;
-$red: #bc0d05;
-$dimblue: #e3f5fc;
 
 /* Base Setup
 -----------------------------------*/
@@ -54,15 +51,16 @@ nav {
     }
   }
   ul {
+    width: 420px;
     float: right;
-    margin-top: 6px;
+    padding-top: 10px;
 
     li {
-      display: inline;
+      float: left;
+      margin: 0 10px;
       color: #444;
-      padding: 8px;
+      padding: 4px 8px;
       font-size: 110%;
-      text-align: center;
 
       a {
         text-decoration: none;
@@ -184,7 +182,7 @@ section {
     float: left;
 
     h3 {
-      color: orange;
+      color: $orange;
       font-size: 140%;
       margin-bottom: 10px;
     }
@@ -250,18 +248,8 @@ p {
   line-height: 20px;
 
   &.hint {
-    font-size: 70%;
+    font-size: 90%;
     font-style: italic;
-    clear: both;
-    text-align: center;
-  }
-}
-ol {
-  li {
-    list-style: numeral;
-    font-size: 100%;
-    color: #777;
-    line-height: 20px;   
   }
 }
 
@@ -269,25 +257,24 @@ ol {
 -----------------------------------*/
 
 .btn {
-  @include border-radius(4px);
+  @include border-radius(10px);
   padding: 8px 20px;
-  cursor: pointer;
 
   &.large {
     font-family: 'CabinBold', 'Helvetica', Arial, sans-serif;
     font-size: 140%;
     text-align: center;
     text-shadow: 0 1px 0 darken(#0072ac, 10%);
-    color: #efefef;
+    color: #fff;
   }
 
   &.small {
-    @include border-radius(4px);
+    @include border-radius(10px);
     font-family: 'CabinBold', 'Helvetica', Arial, sans-serif;
     font-size: 120%;
     text-align: center;
     text-shadow: 0 1px 0 darken(#0072ac, 10%);
-    color: #efefef;
+    color: #fff;
     float: right;
   }
 
@@ -295,13 +282,9 @@ ol {
     background: #0072ac;
     border: 1px solid darken(#0072ac, 10%);
     @include box-shadow(
-      0 1px 0 lighten(#0072ac, 20%) inset,
-      0 0 15px lighten(#0072ac, 10%) inset,
-      0 3px 10px #222
+      0 1px 0 lighten(#0072ac, 10%) inset,
+      0 1px 3px #222
       );
-    &:active {
-      @include box-shadow(0 1px 10px darken(#0072ac, 20%) inset);
-    }
   }
 }
 a.btn {

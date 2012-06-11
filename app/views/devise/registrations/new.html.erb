@@ -7,11 +7,11 @@
   <h2>Sign Up</h2>
 </div>
 
-<div class="form center">
+<div class="form center sign-up">
 
   <%= form_for(resource,
                as: resource_name,
-               url: registration_path(resource_name),
+               url: registration_path,
                id: 'user-registration-form') do |f| %>
 
     <div class="form-errors">
@@ -19,7 +19,30 @@
       <div id="stripe-errors"></div>
     </div>
 
-    <%= f.hidden_field :stripe_token %>
+    <%= f.hidden_field :stripe_card_token %>
+
+    <p>
+      <%= f.label :plan_id %>
+      <%= f.hidden_field :plan_id, value: params[:plan_id] %>
+      <div class="select-plan">
+        <% @plans.each_with_index do |plan,i| %>
+          <div class="plan<%= ' selected' if @plan && @plan.id == plan.id || @plan.nil? && i==1 %>" data-plan-id="<%= plan.id %>">
+            <dl>
+              <dt><%= number_with_delimiter(plan.number_of_bundled_emails) %></dt>
+              <dd>Email Authentications</dd>
+              <dt><%= number_to_currency(plan.overage_email_cost, precision: 3) %></dt>
+              <dd>per email over bundle</dd>
+              <dt><%= number_to_currency(plan.sms_cost, precision: 3) %></dt>
+              <dd>per sms</dd>
+            </dl>
+            <div class="price">
+              <%= number_to_currency(plan.monthly_cost, precision: 0) %>
+              <span class="per-month">/ mo.</span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </p>
 
     <p>
       <%= f.label :email %>
@@ -36,27 +59,29 @@
       <%= f.password_field :password_confirmation %>
     </p>
 
-    <fieldset class="credit-card">
-      <h3>Payment Info</h3>
+    <fieldset>
+      <legend>Payment info</legend>
 
-      <div class="magnetic-stripe"></div>
+      <p class="hint">
+        You won't be billed until your trial period is over. Kick the tires, write your first app. You know.
+      </p>
 
-        <p>
-          <label>Card Number</label>
-          <input type="text" size="20" autocomplete="off" class="card-number" placeholder="4242 4242 4242 4242" required>
-        </p>
+      </br>
 
-        <p class="cvc">
-          <label>CVC</label>
-          <input type="text" size="4" autocomplete="off" class="card-cvc" required>
-        </p>
+      <p class="card-number">
+        <label>Card Number</label>
+        <input type="text" size="20" autocomplete="off" class="card-number" required>
+      </p>
 
-        <p class="date">
-          <label>Expiry Date</label>
-          <input type="text" size="2" class="card-expiry-month" placeholder="MM" required> / <input type="text" size="4" class="card-expiry-year" placeholder="YYYY" required>
-        </p>
+      <p class="card-cvc">
+        <label>CVC</label>
+        <input type="text" size="4" autocomplete="off" class="card-cvc" required>
+      </p>
 
-        <p class="hint">Don't worry. We won't bill you until your 15 day trial is up. After that, cancel anytime.</p>
+      <p>
+        <label>Expiration (MM/YYYY)</label>
+        <input type="text" size="2" class="card-expiry-month" required> / <input type="text" size="4" class="card-expiry-year" required>
+      </p>
 
     </fieldset>
 
@@ -68,3 +93,13 @@
 
 </div>
 
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('.select-plan .plan').click(function(event){
+      $('.select-plan .plan').removeClass('selected');
+      $(this).addClass('selected');
+      $('#user_plan_id').val($(this).attr('data-plan-id'));
+    });
+  });
+</script>
