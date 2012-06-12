@@ -67,4 +67,7 @@ Toofactor::Application.configure do
   
   $REDIS = Redis.new(:host => "127.0.0.1", :port => 6379)
   config.action_mailer.default_url_options = { :host => 'toofactor.com' }
+  
+  API_KEY_SALT = ENV['API_KEY_SALT']
+  DEV_API_KEY_SALT = ENV['DEV_API_KEY_SALT']
 end

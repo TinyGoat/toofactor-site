@@ -37,5 +37,6 @@ Toofactor::Application.configure do
   config.assets.debug = true
 
   API_KEY_SALT = '7fc0c23356b36bfadd4706a151b3e56d3fcac1b0e2a7cd0b0c0c1f7c83baf4ff0c69bccc38f26df4733150be9f03adb82a8e5c5be4f1c15763d5de6b840ca1fa'
+  DEV_API_KEY_SALT = '6c2e7304b34f9d61ddc5a7cfa773f51fc9d05770836a48c100678727a48aeaf5e30d78c3eae912cf230dd7ce9eac48aa86363e4e236cc38476336a0b2fd0b55c'
   $REDIS = Redis.new(:host => "127.0.0.1", :port => 6379)
 end

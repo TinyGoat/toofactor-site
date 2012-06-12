@@ -40,9 +40,9 @@ class User < ActiveRecord::Base
   ##
 
   before_validation :validate_plan_id
-  before_validation :generate_api_key, on: :create
+  before_validation :generate_api_keys, on: :create
   before_validation :set_next_billing_date, on: :create
-  after_create :notify_redis_of_new_api_key
+  after_create :notify_redis_of_new_api_keys
   before_validation :generate_stripe_customer_token
   after_save :create_subscription_from_plan_id
 
@@ -65,12 +65,14 @@ class User < ActiveRecord::Base
     end
   end
   
-  def generate_api_key
+  def generate_api_keys
     self.api_key = (Digest::RMD160.new << self.email + API_KEY_SALT).to_s
+    self.dev_api_key = (Digest::RMD160.new << self.email + DEV_API_KEY_SALT).to_s
   end
   
-  def notify_redis_of_new_api_key
+  def notify_redis_of_new_api_keys
     $CUSTOMER_REDIS.set(self.api_key, '0')
+    $CUSTOMER_DEV_REDIS.set(self.dev_api_key, '0')
   end
 
   def set_next_billing_date

@@ -34,4 +34,8 @@ Toofactor::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  API_KEY_SALT = 'test'
+  DEV_API_KEY_SALT = 'test2'
+  $REDIS = Redis.new(:host => "127.0.0.1", :port => 6379)
 end
