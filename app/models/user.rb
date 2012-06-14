@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Requires
+  require 'OpenSSL'
+  require 'Base64'
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email,
                   :password,
@@ -56,8 +60,9 @@ class User < ActiveRecord::Base
   end
   
   def generate_api_keys
-    self.api_key = (Digest::RMD160.new << self.email + API_KEY_SALT).to_s
-    self.dev_api_key = (Digest::RMD160.new << self.email + DEV_API_KEY_SALT).to_s
+    tf_digest     = OpenSSL::Digest::Digest.new('sha256')
+    tf_salt       = OpenSSL::Random.random_bytes(4096)
+    self.api_key  = OpenSSL::HMAC.hexdigest(tf_digest, tf_salt, self.email)
   end
   
   def notify_redis_of_new_api_keys
