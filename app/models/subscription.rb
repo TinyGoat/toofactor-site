@@ -27,6 +27,31 @@ class Subscription < ActiveRecord::Base
   before_validation :set_subscribed_at, on: :create
   before_destroy :set_canceled_at
   
+  
+  ##
+  ## Scopes
+  ##
+  
+  scope :active, where(canceled_at: nil)
+  scope :inactive, where('subscriptions.canceled_at IS NOT NULL')
+  
+  
+  ##
+  ## Instance Methods
+  ##
+  
+  def active?
+    self.canceled_at.nil?
+  end
+  
+  def terminate!
+    if self.canceled_at.blank?
+      self.canceled_at = Time.now
+      self.save!
+    end
+  end
+  
+  
   private
   
   def set_subscribed_at
