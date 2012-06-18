@@ -60,10 +60,11 @@ class User < ActiveRecord::Base
   end
   
   def generate_api_keys
-    tf_digest     = OpenSSL::Digest::Digest.new('sha256')
-    tf_salt_base  = OpenSSL::Random.random_bytes(4096)
-    tf_salt       = Base64.encode64(tf_salt_base)
-    self.api_key  = OpenSSL::HMAC.hexdigest(tf_digest, tf_salt, self.email)
+    tf_digest        = OpenSSL::Digest::Digest.new('sha256')
+    tf_salt_base     = OpenSSL::Random.random_bytes(4096)
+    tf_salt          = Base64.encode64(tf_salt_base)
+    self.api_key     = OpenSSL::HMAC.hexdigest(tf_digest, tf_salt, self.email)
+    self.dev_api_key = OpenSSL::HMAC.hexdigest(tf_digest, tf_salt, 'dev+'+self.email)
   end
   
   def notify_redis_of_new_api_keys
