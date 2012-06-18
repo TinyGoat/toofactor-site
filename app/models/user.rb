@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
                   :api_key,
                   :next_billing_date,
                   :stripe_card_token,
-                  :plan_id
+                  :plan_id,
+                  :subscription_id
 
   attr_accessor :stripe_card_token,
                 :plan_id
@@ -33,13 +34,14 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :next_billing_date, presence: true
   validates :api_key, presence: true, uniqueness: true
+  validates :dev_api_key, presence: true, uniqueness: true
+  validates :plan_id, presence: true
 
 
   ##
   ## Callbacks
   ##
 
-  before_validation :validate_plan_id
   before_validation :generate_api_keys, on: :create
   before_validation :set_next_billing_date, on: :create
   after_create :notify_redis_of_new_api_keys
@@ -51,18 +53,6 @@ class User < ActiveRecord::Base
   
   def create_subscription_from_plan_id
     self.subscription = Subscription.create(plan_id: self.plan_id)
-  end
-  
-  def validate_plan_id
-    if plan_id.blank?
-      errors.add :plan_id, "You must select a plan to register."
-      false
-    elsif !Plan.exists?(plan_id)
-      errors.add :plan_id, "Please select a valid plan to register."
-      false
-    else
-      true
-    end
   end
   
   def generate_api_keys

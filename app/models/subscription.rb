@@ -16,6 +16,8 @@ class Subscription < ActiveRecord::Base
   ##
 
   validates :subscribed_at, presence: true
+  validates :user, presence: true
+  validates :plan, presence: true
 
 
   ##
