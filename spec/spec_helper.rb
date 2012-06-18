@@ -8,17 +8,13 @@ require 'rspec/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
-  # ## Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
+  # Mock Framework
+  config.mock_with :rspec
+  
+  # Alias 'it' to 'they' in specs for readability
+  config.alias_example_to :they
+
   config.use_transactional_fixtures = false
   
   config.before(:suite) do
