@@ -18,11 +18,3 @@ To see a list of all environment variables and their current values for a heroku
 ```
   heroku config --app appname
 ```
-
-### API_KEY_SALT
-
-Used to generate API keys.
-
-### DEV_API_KEY_SALT
-
-Used to generate development API keys.
