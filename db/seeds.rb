@@ -18,3 +18,20 @@ unless Plan.any?
                  overage_sms_cost: plan_attributes[:overage_sms_cost]
   end
 end
+
+unless Rails.env.production?
+  
+  unless User.any?
+    
+    puts "\n"
+    t.say_status "creating", "Test User"
+    user = Fabricate.build(:user, email: 'user@example.com',
+                                  password: 'password!',
+                                  password_confirmation: 'password!')
+    t.say_status "email", user.email, :blue
+    t.say_status "password", 'password!', :blue
+    user.save!
+    user.confirm!
+  end
+  
+end

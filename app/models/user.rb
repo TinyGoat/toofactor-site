@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable, :lockable
 
   # Requires
   require 'OpenSSL'
@@ -55,7 +55,9 @@ class User < ActiveRecord::Base
   private
   
   def create_subscription_from_plan_id
-    self.subscription = Subscription.create(plan_id: self.plan_id)
+    unless self.subscription.present?
+      self.subscription = Subscription.create(plan_id: self.plan_id)
+    end
   end
   
   def generate_api_key

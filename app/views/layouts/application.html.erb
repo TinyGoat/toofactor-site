@@ -9,15 +9,31 @@
 </head>
   <body>
 
-  <%= render 'shared/navigation' %>
+  	<%= render 'shared/navigation' %>
 
     <div id="grid">
-      <%= yield %>
-    </div>
+    
+			<% unless notice.blank? %>
+				<div class="message notice">
+				  <%= notice %>
+				</div>
+			<% end %>
+			
+			<% unless alert.blank? %>
+				<div class="message alert">
+				  <%= alert %>
+				</div>
+			<% end %>
+
+  		<%= yield %>
+    
+		</div>
 
     <footer>
       Copyright &copy; <%=Time.now.year %> toofactor.com
     </footer>
+
     <%= render 'shared/analytics' %>
+
   </body>
 </html>
