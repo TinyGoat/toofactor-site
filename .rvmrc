@@ -1,2 +1,1 @@
-export rvm_configure_flags="--with-gcc=clang"
-rvm use 1.9.3@toofactor
+rvm use --create 1.9.2@toofactor-site
