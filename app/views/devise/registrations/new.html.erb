@@ -27,13 +27,12 @@
       <div class="select-plan">
         <% @plans.each_with_index do |plan,i| %>
           <div class="plan<%= ' selected' if @plan && @plan.id == plan.id || @plan.nil? && i==1 %>" data-plan-id="<%= plan.id %>">
+					  <h2><%= plan.name %></h2>
             <dl>
-              <dt><%= number_with_delimiter(plan.number_of_bundled_emails) %></dt>
-              <dd>Email Authentications</dd>
-              <dt><%= number_to_currency(plan.overage_email_cost, precision: 3) %></dt>
-              <dd>per email over bundle</dd>
-              <dt><%= number_to_currency(plan.sms_cost, precision: 3) %></dt>
-              <dd>per sms</dd>
+              <dt><%= number_with_delimiter(plan.number_of_bundled_sms) %></dt>
+              <dd>SMS Authentications</dd>
+              <dt><%= number_to_dollars_or_cents(plan.overage_sms_cost) %></dt>
+              <dd>per SMS over bundle</dd>
             </dl>
             <div class="price">
               <%= number_to_currency(plan.monthly_cost, precision: 0) %>
