@@ -7,7 +7,9 @@ Toofactor::Application.routes.draw do
   
   resources :plans, only: [:index]
 
-  devise_for :users, controllers: { registrations: 'registrations' } do
+  devise_for :users, controllers: { registrations: 'registrations' }
+  
+  devise_scope :user do
     get '/sign_up', to: 'registrations#new', as: :sign_up
     post '/sign_up', to: 'registrations#create', as: :registration
     get '/account', to: 'registrations#edit', as: :edit_account
