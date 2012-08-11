@@ -45,9 +45,9 @@ class User < ActiveRecord::Base
   ## Callbacks
   ##
 
-  before_validation :generate_api_keys, on: :create
+  before_validation :generate_api_key, on: :create
   before_validation :set_next_billing_date, on: :create
-  after_create :notify_redis_of_new_api_keys
+  after_create :notify_redis_of_new_api_key
   before_validation :generate_stripe_customer_token
   after_save :create_subscription_from_plan_id
 
@@ -58,14 +58,14 @@ class User < ActiveRecord::Base
     self.subscription = Subscription.create(plan_id: self.plan_id)
   end
   
-  def generate_api_keys
+  def generate_api_key
     tf_digest        = OpenSSL::Digest::Digest.new('sha256')
     tf_salt_base     = OpenSSL::Random.random_bytes(4096)
     tf_salt          = Base64.encode64(tf_salt_base)
     self.api_key     = OpenSSL::HMAC.hexdigest(tf_digest, tf_salt, self.email)
   end
   
-  def notify_redis_of_new_api_keys
+  def notify_redis_of_new_api_key
     $CUSTOMER_REDIS.set(self.api_key, '0')
   end
 
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
     end
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"
-    errors.add :base, "There was a problem with your credit card."
+    errors.add :base, "There was a problem processing your credit card."
     false
   end
 
