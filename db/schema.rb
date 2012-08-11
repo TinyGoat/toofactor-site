@@ -11,16 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513175350) do
+ActiveRecord::Schema.define(:version => 20120811191335) do
 
   create_table "plans", :force => true do |t|
     t.string   "name"
     t.float    "monthly_cost"
-    t.integer  "number_of_bundled_emails"
-    t.float    "overage_email_cost"
-    t.float    "sms_cost"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.float    "overage_sms_cost"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "number_of_bundled_sms"
   end
 
   create_table "subscriptions", :force => true do |t|

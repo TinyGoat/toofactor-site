@@ -1,16 +1,13 @@
 plans:
 - name: Basic
-  monthly_cost: 15.00
-  number_of_bundled_emails: 15000
-  overage_email_cost: 0.005
-  sms_cost: 0.015
+  monthly_cost: 8.00
+  number_of_bundled_sms: 1000
+  overage_sms_cost: 0.01
 - name: Plus
   monthly_cost: 25.00
-  number_of_bundled_emails: 30000
-  overage_email_cost: 0.004
-  sms_cost: 0.015
+  number_of_bundled_sms: 3000
+  overage_sms_cost: 0.01
 - name: Premium
-  monthly_cost: 60.00
-  number_of_bundled_emails: 100000
-  overage_email_cost: 0.003
-  sms_cost: 0.015
+  monthly_cost: 70.00
+  number_of_bundled_sms: 10000
+  overage_sms_cost: 0.0085

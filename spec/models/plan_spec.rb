@@ -17,14 +17,11 @@ describe Plan do
   it "validates presence of monthly cost" do
     should validate_presence_of :monthly_cost
   end
-  it "validates presence of number of bundled emails" do
-    should validate_presence_of :number_of_bundled_emails
+  it "validates presence of number of bundled SMS" do
+    should validate_presence_of :number_of_bundled_sms
   end
-  it "validates presence of overage email cost" do
-    should validate_presence_of :overage_email_cost
-  end
-  it "validates presence of SMS cost" do
-    should validate_presence_of :sms_cost
+  it "validates presence of overage SMS cost" do
+    should validate_presence_of :overage_sms_cost
   end
   
   

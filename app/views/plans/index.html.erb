@@ -10,15 +10,16 @@
         <tr>
           <td width="75%">
             <dl>
-              <dt><%= number_with_delimiter(plan.number_of_bundled_emails) %> Email Authentications / mo</dt>
+              <dt>
+							  <%= number_with_delimiter(plan.number_of_bundled_sms) %> SMS Authentications / mo
+							</dt>
               <dd>
-                <%= number_to_currency(plan.overage_email_cost, precision: 3) %> / email over bundle<br>
-                <%= number_to_currency(plan.sms_cost, precision: 3) %> / sms
+                <%= number_to_dollars_or_cents(plan.overage_sms_cost) %> / SMS over bundle
               </dd>
             </dl>
           </td>
           <td class="price">
-            <%= number_to_currency(plan.monthly_cost, precision: 0) %>/mo
+            <%= number_to_dollars_or_cents(plan.monthly_cost, precision: 0) %>/mo
           </td>
           <td class="action">
             <%= link_to 'Get Started', new_user_registration_path(plan_id: plan.id), class: 'btn blue' %>
@@ -28,5 +29,4 @@
     </tbody>
   </table>
   <h3>Try it for 15 days <span class="red">free.</span> Start now.</h3>
-  <h4>Add SMS for just 1.5 cents per message</h4>
 </div>
