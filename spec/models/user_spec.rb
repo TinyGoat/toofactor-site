@@ -48,21 +48,6 @@ describe User do
       end.to raise_error ActiveRecord::RecordInvalid
       user.errors[:api_key].should include "has already been taken"
     end
-  
-    it "validate presence of dev_api_key" do
-      @user.should validate_presence_of :dev_api_key
-    end
-    it "validate uniquness of dev_api_key" do
-      # can't use default shoulda-matcher uniqueness test here because we're
-      # generating an API key on create.
-      user = Fabricate(:user)
-      user2 = Fabricate(:user)
-      user.dev_api_key = user2.dev_api_key
-      expect do
-        user.save!
-      end.to raise_error ActiveRecord::RecordInvalid
-      user.errors[:dev_api_key].should include "has already been taken"
-    end
   end
   
   
@@ -77,14 +62,6 @@ describe User do
         user.save!
       end.to_not raise_error
       user.reload.api_key.should_not be_nil
-    end
-  
-    it "generate a development API key when created" do
-      user = Fabricate.build(:user, dev_api_key: nil)
-      expect do
-        user.save!
-      end.to_not raise_error
-      user.reload.dev_api_key.should_not be_nil
     end
   end
   

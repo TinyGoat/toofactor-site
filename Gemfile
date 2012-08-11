@@ -30,10 +30,10 @@ group :development, :test do
   gem 'awesome_print'
   gem 'fabrication'
   gem 'faker'
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem "database_cleaner", "~> 0.8.0"
 end

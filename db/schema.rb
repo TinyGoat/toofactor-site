@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612190937) do
+ActiveRecord::Schema.define(:version => 20120513175350) do
 
   create_table "plans", :force => true do |t|
     t.string   "name"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20120612190937) do
     t.string   "stripe_customer_token"
     t.string   "api_key"
     t.date     "next_billing_date"
-    t.string   "dev_api_key"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
