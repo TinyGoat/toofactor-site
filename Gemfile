@@ -23,6 +23,7 @@ group :development do
   gem 'sqlite3'
   gem 'heroku'
   gem 'taps'
+  gem 'git_remote_branch'
 end
 
 group :development, :test do
